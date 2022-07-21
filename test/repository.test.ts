@@ -53,9 +53,6 @@ describe("Repository", () => {
             relations: RoomEntity.relations
         });
 
-        console.log(savedRoomEntity2);
-        console.log(storedRoomEntity2);
-
         // then
         expect(savedRoomEntity2).toEqual(storedRoomEntity2);
     });
