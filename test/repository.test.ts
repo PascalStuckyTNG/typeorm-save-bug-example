@@ -47,13 +47,16 @@ describe("Repository", () => {
         await roomRepository.save(roomEntity);
 
         // when
-        const savedRoomEntity2 = await roomRepository.save(roomEntity);
-        const storedRoomEntity2 = await roomRepository.findOne({
+        const savedRoomEntity = await roomRepository.save(roomEntity);
+        const storedRoomEntity = await roomRepository.findOne({
             where: {name: roomObject.name},
-            relations: RoomEntity.relations
+            relations: [
+                "roomToGuestEntities",
+                "roomToGuestEntities.guest"
+            ]
         });
 
         // then
-        expect(savedRoomEntity2).toEqual(storedRoomEntity2);
+        expect(savedRoomEntity).toEqual(storedRoomEntity);
     });
 })
